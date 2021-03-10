@@ -20,12 +20,17 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 app.use(morgan('common'));
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    // eslint-disable-next-line comma-dangle
+  })
+);
 app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to Travel-Log',
+    message: 'Hello World!',
   });
 });
 
